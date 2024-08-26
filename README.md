@@ -3,12 +3,19 @@
 This repository contains resources for launching a minecraft server
 and a minecraft mods file host via docker.
 
-# Details - My Setup
+# Details - Hardware
 
-Minecraft client: [SKLauncher](https://skmedix.pl/).
-Minecraft version: 1.20.6
-Forge version: 1.20.6
-List of MODS:
+- Make/Model: Intel NUC 11 Business Mini PC
+- CPU: Intel Core i7-1165G7
+- Memory: 64GB RAM
+- Storage: 1TB SSD
+
+# Details - Minecraft
+
+- Minecraft client: [SKLauncher](https://skmedix.pl/)
+- Minecraft version: 1.20.6
+- Forge version: 1.20.6
+- List of MODS:
   - BiomesOPlenty-forge-1.20.6-18.4.0.8.jar
   - skinlayers3d-forge-1.6.6-mc1.20.6-all.jar
   - journeymap-1.20.6-5.10.0-forge.jar
