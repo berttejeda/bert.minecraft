@@ -1,0 +1,65 @@
+version: "3.8"
+
+volumes:
+  minecraft_server_data:
+    
+services:
+  minecraft-server:
+    container_name: minecraft-server
+    image: itzg/minecraft-server
+    environment:
+      LEVEL: "cold"
+      LEVEL_TYPE: "DEFAULT"
+      MAX_PLAYERS: "40"
+      MEMORY: "16G"
+      MODE: "survival"
+      MOTD: "Forge Minecraft Server"
+      PVP: "True"
+      SERVER_NAME: "LEH Minecraft Server"
+      TYPE: "FORGE"
+      TZ: "US/Eastern"
+      VERSION: "1.20.6"
+      CUSTOM_SERVER_PROPERTIES: "enforce-whitelist=false"
+      OPS: "Bert"
+      ALLOW_NETHER: "True"
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
+      ENABLE_RCON: "true"
+      ENABLE_WHITELIST: "FALSE"
+      EULA: "TRUE"
+      GUI: "FALSE"
+      MODS_FILE: "/extras/mods.txt"
+      ONLINE_MODE: "FALSE"
+      RCON_PASSWORD: "password"
+      RCON_PORT: "28016"
+      REMOVE_OLD_MODS: "true"
+      SERVER_PORT: "25565"
+      SPAWN_ANIMALS: "true"
+      SPAWN_MONSTERS: "true"
+      SPAWN_NPCS: "True"
+      DIFFICULTY: "hard"
+      VIEW_DISTANCE: "20"
+      
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    ports:
+      - 25565:25565
+    volumes:
+      - minecraft_server_data:/data
+      - ./mods.txt:/extras/mods.txt:ro
+      
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+
+  minecraft-mods-server:
+    image: nginx:alpine
+    container_name: minecraft-mods-server
+    restart: always
+    ports:
+      - "20308:80"
+       
+    volumes:
+      - "./mods:/srv"
+      - ./etc/nginx/conf.d:/etc/nginx/conf.d
